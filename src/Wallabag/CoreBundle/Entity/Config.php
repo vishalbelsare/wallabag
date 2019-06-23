@@ -115,6 +115,12 @@ class Config
      */
     private $taggingRules;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Wallabag\CoreBundle\Entity\IgnoreOriginRule", mappedBy="config", cascade={"remove"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    private $ignoreOriginRules;
+
     /*
      * @param User     $user
      */
@@ -384,5 +390,25 @@ class Config
     public function getTaggingRules()
     {
         return $this->taggingRules;
+    }
+
+    /**
+     * @param IgnoreOriginRule $rule
+     *
+     * @return Config
+     */
+    public function addIgnoreOriginRule(IgnoreOriginRule $rule)
+    {
+        $this->ignoreOriginRules[] = $rule;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<IgnoreOriginRule>
+     */
+    public function getIgnoreOriginRules()
+    {
+        return $this->ignoreOriginRules;
     }
 }

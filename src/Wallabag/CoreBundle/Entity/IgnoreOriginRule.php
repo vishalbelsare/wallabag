@@ -7,13 +7,13 @@ use Symfony\Bridge\RulerZ\Validator\Constraints as RulerZAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Tagging rule.
+ * Ignore Origin rule.
  *
- * @ORM\Entity(repositoryClass="Wallabag\CoreBundle\Repository\TaggingRuleRepository")
- * @ORM\Table(name="`tagging_rule`")
+ * @ORM\Entity(repositoryClass="Wallabag\CoreBundle\Repository\IgnoreOriginRuleRepository")
+ * @ORM\Table(name="`ignore_origin_rule`")
  * @ORM\Entity
  */
-class TaggingRule implements RuleInterface
+class IgnoreOriginRule implements RuleInterface
 {
     /**
      * @var int
@@ -30,23 +30,15 @@ class TaggingRule implements RuleInterface
      * @Assert\NotBlank()
      * @Assert\Length(max=255)
      * @RulerZAssert\ValidRule(
-     *  allowed_variables={"title", "url", "isArchived", "isStared", "content", "language", "mimetype", "readingTime", "domainName"},
-     *  allowed_operators={">", "<", ">=", "<=", "=", "is", "!=", "and", "not", "or", "matches", "notmatches"}
+     *  allowed_variables={"host","pattern"},
+     *  allowed_operators={"=","~"}
      * )
      * @ORM\Column(name="rule", type="string", nullable=false)
      */
     private $rule;
 
     /**
-     * @var array
-     *
-     * @Assert\NotBlank()
-     * @ORM\Column(name="tags", type="simple_array", nullable=false)
-     */
-    private $tags = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Wallabag\CoreBundle\Entity\Config", inversedBy="taggingRules")
+     * @ORM\ManyToOne(targetEntity="Wallabag\CoreBundle\Entity\Config", inversedBy="ignoreOriginRules")
      */
     private $config;
 
@@ -65,7 +57,7 @@ class TaggingRule implements RuleInterface
      *
      * @param string $rule
      *
-     * @return TaggingRule
+     * @return IgnoreOriginRule
      */
     public function setRule($rule)
     {
@@ -85,35 +77,11 @@ class TaggingRule implements RuleInterface
     }
 
     /**
-     * Set tags.
-     *
-     * @param array <string> $tags
-     *
-     * @return TaggingRule
-     */
-    public function setTags(array $tags)
-    {
-        $this->tags = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Get tags.
-     *
-     * @return array<string>
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
      * Set config.
      *
      * @param Config $config
      *
-     * @return TaggingRule
+     * @return IgnoreOriginRule
      */
     public function setConfig(Config $config)
     {
