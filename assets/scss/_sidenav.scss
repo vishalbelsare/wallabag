@@ -1,0 +1,55 @@
+/* ==========================================================================
+   Sidenav
+   ========================================================================== */
+
+.sidenav {
+  width: 240px;
+
+  li {
+    padding: 0;
+
+    &.logo > a:hover {
+      background: initial;
+    }
+
+    & > a > i.material-icons.theme-toggle-icon {
+      float: none;
+      margin-left: 0;
+    }
+  }
+
+  a {
+    margin: 0;
+  }
+
+  &.sidenav-fixed a {
+    font-size: 13px;
+    line-height: 44px;
+    height: 44px;
+  }
+
+  .collapsible-header,
+  &.sidenav-fixed .collapsible-header {
+    height: 45px;
+    line-height: 44px;
+    padding: 0 20px;
+  }
+
+  > li.logo {
+    line-height: 0;
+    text-align: center;
+  }
+}
+
+.bold > a {
+  font-weight: bold;
+}
+
+.items-number {
+  float: right;
+}
+
+.button-filters .sidenav-trigger,
+.button-export .sidenav-trigger {
+  display: block;
+}
