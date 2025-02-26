@@ -1,7 +1,7 @@
 # This file is a "template" of what your parameters.yml file should look like
 parameters:
     # Uncomment these settings or manually update your parameters.yml
-    # to use docker-compose
+    # to use Docker Compose
     #
     # database_driver: %env.database_driver%
     # database_host: %env.database_host%
@@ -23,16 +23,10 @@ parameters:
     # with PostgreSQL and SQLite, you must set "utf8"
     database_charset: utf8mb4
 
-    domain_name: https://your-wallabag-url-instance.com
+    domain_name: https://your-wallabag-instance.wallabag.org
     server_name: "Your wallabag instance"
 
-    mailer_transport:  smtp
-    mailer_user:       ~
-    mailer_password:   ~
-    mailer_host:       127.0.0.1
-    mailer_port:       false
-    mailer_encryption: ~
-    mailer_auth_mode:  ~
+    mailer_dsn: smtp://127.0.0.1
 
     locale: en
 
@@ -40,11 +34,10 @@ parameters:
     secret: CHANGE_ME_TO_SOMETHING_SECRET_AND_RANDOM
 
     # two factor stuff
-    twofactor_auth: true
     twofactor_sender: no-reply@wallabag.org
 
     # fosuser stuff
-    fosuser_registration: true
+    fosuser_registration: false
     fosuser_confirmation: true
 
     # how long the access token should live in seconds for the API
@@ -54,8 +47,6 @@ parameters:
 
     from_email: no-reply@wallabag.org
 
-    rss_limit: 50
-
     # RabbitMQ processing
     rabbitmq_host: localhost
     rabbitmq_port: 5672
@@ -64,7 +55,7 @@ parameters:
     rabbitmq_prefetch_count: 10
 
     # Redis processing
-    redis_scheme: tcp
+    redis_scheme: redis
     redis_host: localhost
     redis_port: 6379
     redis_path: null
